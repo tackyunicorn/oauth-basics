@@ -1,0 +1,27 @@
+{
+  "name": "oauth-basics",
+  "version": "1.0.0",
+  "description": "Learning oauth using passport.js from the tutorial by [The Net Ninja](https://youtu.be/sakQbeRjgwg)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tackyunicorn/oauth-basics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tackyunicorn/oauth-basics/issues"
+  },
+  "homepage": "https://github.com/tackyunicorn/oauth-basics#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
