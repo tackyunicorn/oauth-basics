@@ -1,7 +1,24 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const keys = require('./keys')
 const User = require('../models/user-model')
+var keys
+try {
+    keys = require('./keys')
+} catch (e) {
+    keys = {
+        google: {
+            clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+            callbackURL: process.env.GOOGLE_CALLBACK_URL
+        },
+        mongodb: {
+            dbURI: process.env.MONGO_DB_URI
+        },
+        session: {
+            cookieKey: process.env.COOKIE_KEY
+        }
+    }
+}
 
 
 passport.serializeUser((user, done) => {
@@ -17,9 +34,9 @@ passport.deserializeUser((id, done) => {
 passport.use(
     new GoogleStrategy({
         // options for the strategy
-        callbackURL: '/auth/google/redirect',
         clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret
+        clientSecret: keys.google.clientSecret,
+        callbackURL: keys.google.callbackURL
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists
         User.findOne({ googleid: profile.id }).then((currentUser) => {

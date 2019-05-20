@@ -4,7 +4,7 @@
   "description": "Learning oauth using passport.js from the tutorial by [The Net Ninja](https://youtu.be/sakQbeRjgwg)",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "repository": {

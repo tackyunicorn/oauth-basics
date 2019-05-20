@@ -3,9 +3,26 @@ const authRoutes = require('./routes/auth-routes')
 const profileRoutes = require('./routes/profile-routes')
 const passportSetup = require('./config/passport-setup')
 const mongoose = require('mongoose')
-const keys = require('./config/keys')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
+var keys
+try {
+    keys = require('./config/keys')
+} catch (e) {
+    keys = {
+        google: {
+            clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+            callbackURL: process.env.GOOGLE_CALLBACK_URL
+        },
+        mongodb: {
+            dbURI: process.env.MONGO_DB_URI
+        },
+        session: {
+            cookieKey: process.env.COOKIE_KEY
+        }
+    }
+}
 
 const app = express()
 const port = process.env.PORT || 3000
