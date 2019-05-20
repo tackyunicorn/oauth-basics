@@ -10,14 +10,20 @@ passport.use(
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
-        // passport callback function
-        console.log('passport callback function fired')
-        console.log(profile)
-        new User({
-            username: profile.displayName,
-            googleid: profile.id
-        }).save().then((newUser) => {
-            console.log('new user created: ' + newUser);
+        // check if user already exists
+        User.findOne({ googleid: profile.id }).then((currentUser) => {
+            if(currentUser) {
+                // already have a user
+                console.log('user is: ' + currentUser)
+            } else {
+                // if not, create a user in the db
+                new User({
+                    username: profile.displayName,
+                    googleid: profile.id
+                }).save().then((newUser) => {
+                    console.log('new user created: ' + newUser);
+                })
+            }
         })
     }
 ))
