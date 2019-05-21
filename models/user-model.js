@@ -7,6 +7,7 @@ const userSchema = new Schema({
     googleid: String,
     facebookid: String,
     instagramid: String,
+    twitterid: String,
     thumbnail: String
 })
 

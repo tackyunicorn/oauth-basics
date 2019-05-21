@@ -2,6 +2,7 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const FacebookStrategy = require('passport-facebook')
 const InstagramStrategy = require('passport-instagram')
+const TwitterStrategy = require('passport-twitter')
 const User = require('../models/user-model')
 var keys
 try {
@@ -23,11 +24,10 @@ try {
             clientSecret: process.env.INSTAGRAM_OAUTH_CLIENT_SECRET,
             callbackURL: process.env.INSTAGRAM_CALLBACK_URL
         },
-        mongodb: {
-            dbURI: process.env.MONGO_DB_URI
-        },
-        session: {
-            cookieKey: process.env.COOKIE_KEY
+        twitter: {
+            consumerKey: process.env.TWITTER_OAUTH_CLIENT_ID,
+            consumerSecret: process.env.TWITTER_OAUTH_CLIENT_SECRET,
+            callbackURL: process.env.TWITTER_CALLBACK_URL
         }
     }
 }
@@ -118,6 +118,34 @@ passport.use(
                     username: profile.displayName,
                     instagramid: profile.id,
                     thumbnail: profile._json.data.profile_picture
+                }).save().then((newUser) => {
+                    console.log('new user created: ' + newUser)
+                    done(null, newUser)
+                })
+            }
+        })
+    }
+))
+
+passport.use(
+    new TwitterStrategy({
+        // options for the strategy
+        consumerKey: keys.twitter.consumerKey,
+        consumerSecret: keys.twitter.consumerSecret,
+        callbackURL: keys.twitter.callbackURL
+    }, (accessToken, refreshToken, profile, done) => {
+        // check if user already exists
+        User.findOne({ twitterid: profile.id }).then((currentUser) => {
+            if(currentUser) {
+                // already have a user
+                console.log('user is: ' + currentUser)
+                done(null, currentUser)
+            } else {
+                // if not, create a user in the db
+                new User({
+                    username: profile.displayName,
+                    twitterid: profile.id,
+                    thumbnail: profile._json.profile_image_url_https
                 }).save().then((newUser) => {
                     console.log('new user created: ' + newUser)
                     done(null, newUser)

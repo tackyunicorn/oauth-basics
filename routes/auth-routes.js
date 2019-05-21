@@ -42,4 +42,13 @@ router.get('/instagram/redirect', passport.authenticate('instagram'), (req, res)
     res.redirect('/profile/')
 })
 
+// auth with twitter
+router.get('/twitter', passport.authenticate('twitter'))
+
+// callback route for twitter to redirect to
+router.get('/twitter/redirect', passport.authenticate('twitter'), (req, res) => {
+    // res.send(req.user)
+    res.redirect('/profile/')
+})
+
 module.exports = router
