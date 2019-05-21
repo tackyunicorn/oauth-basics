@@ -44,12 +44,48 @@
             color: #333;
         }
 
+        main ul {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        main li {
+            list-style-type: none;
+            display: inline-block;
+            margin: 0 10px 0 0;
+        }
+
         .google-btn {
             color: #fff;
             text-decoration: none;
             font-size: 18px;
             padding: 10px;
             background: #ff5353;
+        }
+
+        .facebook-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            background: #3925e9;
+        }
+
+        .twitter-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            background: #3777b3;
+        }
+
+        .instagram-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            background: #dd0c7f;
         }
     </style>
 </head>
@@ -70,7 +106,12 @@
         <h1>Login using...</h1>
     </header>
     <main>
-        <a class="google-btn" href="/auth/google">Google+</a>
+        <ul>
+            <li><a class="google-btn" href="/auth/google">Google</a></li>
+            <li><a class="facebook-btn" href="/auth/facebook">Facebook</a></li>
+            <li><a class="twitter-btn" href="/auth/twitter">Twitter</a></li>
+            <li><a class="instagram-btn" href="/auth/instagram">Instagram</a></li>
+        </ul>
     </main>
 </body>
 

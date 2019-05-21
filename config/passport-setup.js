@@ -1,5 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
+const FacebookStrategy = require('passport-facebook')
 const User = require('../models/user-model')
 var keys
 try {
@@ -50,6 +51,34 @@ passport.use(
                     username: profile.displayName,
                     googleid: profile.id,
                     thumbnail: profile._json.picture
+                }).save().then((newUser) => {
+                    console.log('new user created: ' + newUser)
+                    done(null, newUser)
+                })
+            }
+        })
+    }
+))
+
+passport.use(
+    new FacebookStrategy({
+        // options for the strategy
+        clientID: keys.facebook.clientID,
+        clientSecret: keys.facebook.clientSecret,
+        callbackURL: keys.facebook.callbackURL
+    }, (accessToken, refreshToken, profile, done) => {
+        // check if user already exists
+        User.findOne({ facebookid: profile.id }).then((currentUser) => {
+            if(currentUser) {
+                // already have a user
+                console.log('user is: ' + currentUser)
+                done(null, currentUser)
+            } else {
+                // if not, create a user in the db
+                new User({
+                    username: profile.displayName,
+                    facebookid: profile.id,
+                    thumbnail: 'https://graph.facebook.com/' + profile.id + '/picture?type=large'
                 }).save().then((newUser) => {
                     console.log('new user created: ' + newUser)
                     done(null, newUser)
