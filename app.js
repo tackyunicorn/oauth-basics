@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const authRoutes = require('./routes/auth-routes')
 const profileRoutes = require('./routes/profile-routes')
@@ -22,8 +23,11 @@ try {
 const app = express()
 const port = process.env.PORT || 3000
 
+const viewsPath = path.join(__dirname, './templates/views')
+
 // set up view engine
 app.set('view engine', 'ejs')
+app.set('views', viewsPath)
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,

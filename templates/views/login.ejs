@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../partials/head %>
+
+<body>
+    <% include ../partials/header %>
+    <main class="text-center">
+        <div class="d-flex jumbotron justify-content-center">
+            <div class="d-flex card bg-transparent justify-content-center" style="width: 18rem;">
+                <ul class="list-group">
+                    <a class="btn btn-block btn-social btn-google" href="/auth/google">
+                        <i class="fab fa-google"></i> Sign in with Google
+                    </a>
+                    <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+                        <i class="fab fa-facebook"></i> Sign in with Facebook
+                    </a>
+                    <a class="btn btn-block btn-social btn-twitter" href="/auth/twitter">
+                        <i class="fab fa-twitter"></i> Sign in with Twitter
+                    </a>
+                    <a class="btn btn-block btn-social btn-instagram" href="/auth/instagram">
+                        <i class="fab fa-instagram"></i> Sign in with Instagram
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <% include ../partials/footer %>
+</body>
+
+</html>
