@@ -33,4 +33,13 @@ router.get('/facebook/redirect', passport.authenticate('facebook'), (req, res) =
     res.redirect('/profile/')
 })
 
+// auth with instagram
+router.get('/instagram', passport.authenticate('instagram'))
+
+// callback route for instagram to redirect to
+router.get('/instagram/redirect', passport.authenticate('instagram'), (req, res) => {
+    // res.send(req.user)
+    res.redirect('/profile/')
+})
+
 module.exports = router
