@@ -12,6 +12,11 @@ try {
             clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
             callbackURL: process.env.GOOGLE_CALLBACK_URL
         },
+        facebook: {
+            clientID: process.env.FACEBOOK_OAUTH_CLIENT_ID,
+            clientSecret: process.env.FACEBOOK_OAUTH_CLIENT_SECRET,
+            callbackURL: process.env.FACEBOOK_CALLBACK_URL
+        },
         mongodb: {
             dbURI: process.env.MONGO_DB_URI
         },
