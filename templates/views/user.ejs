@@ -1,0 +1,15 @@
+<% if (db_user.id == user.id) { %>
+    <div class="card text-white bg-primary mb-3" style="width: 12rem;">
+        <img class="card-img-top" src="<%= db_user.thumbnail%>">
+        <div class="card-body">
+            <h6 class="card-title"><%= db_user.username%></h6>
+        </div>
+    </div>
+<% } else { %>
+    <div class="card border-primary" style="width: 12rem;">
+        <img class="card-img-top" src="<%= db_user.thumbnail%>">
+        <div class="card-body">
+            <h6 class="card-title"><%= db_user.username%></h6>
+        </div>
+    </div>
+<% } %>

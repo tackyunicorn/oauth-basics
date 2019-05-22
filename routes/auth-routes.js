@@ -20,7 +20,6 @@ router.get('/google', passport.authenticate('google', {
 
 // callback route for google to redirect to
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    // res.send(req.user)
     res.redirect('/profile/')
 })
 
@@ -29,7 +28,6 @@ router.get('/facebook', passport.authenticate('facebook'))
 
 // callback route for facebook to redirect to
 router.get('/facebook/redirect', passport.authenticate('facebook'), (req, res) => {
-    // res.send(req.user)
     res.redirect('/profile/')
 })
 
@@ -38,7 +36,6 @@ router.get('/instagram', passport.authenticate('instagram'))
 
 // callback route for instagram to redirect to
 router.get('/instagram/redirect', passport.authenticate('instagram'), (req, res) => {
-    // res.send(req.user)
     res.redirect('/profile/')
 })
 
@@ -47,7 +44,6 @@ router.get('/twitter', passport.authenticate('twitter'))
 
 // callback route for twitter to redirect to
 router.get('/twitter/redirect', passport.authenticate('twitter'), (req, res) => {
-    // res.send(req.user)
     res.redirect('/profile/')
 })
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../partials/head %>
+
+<body>
+    <% include ../partials/header %>
+    <main>
+        <div class="jumbotron">
+            <% users.forEach(function(db_user) { %>
+                <div class="card-columns" style="display: inline-block; width: 12rem">
+                    <% include user %>
+                </div>
+            <%  }) %>
+        </div>
+    </main>
+    <% include ../partials/footer %>
+</body>
+
+</html>
